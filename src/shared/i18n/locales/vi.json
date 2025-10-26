@@ -1,0 +1,19 @@
+{
+  "app": {
+    "title": "Trạm Phát Triển",
+    "home": "Trang Chủ",
+    "courses": "Khóa Học",
+    "interviews": "Phỏng Vấn",
+    "projects": "Dự Án",
+    "quizzes": "Kiểm Tra"
+  },
+  "home": {
+    "title": "Trang Chủ",
+    "description": "Trang chủ"
+  },
+  "language": {
+    "english": "English",
+    "vietnamese": "Tiếng Việt",
+    "switch": "Chuyển Ngôn Ngữ"
+  }
+}

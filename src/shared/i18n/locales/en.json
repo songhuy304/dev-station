@@ -1,0 +1,19 @@
+{
+  "app": {
+    "title": "Dev Station",
+    "home": "Home",
+    "courses": "Courses",
+    "interviews": "Interviews",
+    "projects": "Projects",
+    "quizzes": "Quizzes"
+  },
+  "home": {
+    "title": "Home",
+    "description": "Home page"
+  },
+  "language": {
+    "english": "English",
+    "vietnamese": "Tiếng Việt",
+    "switch": "Switch Language"
+  }
+}

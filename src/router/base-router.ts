@@ -7,8 +7,8 @@ const APP_PATH = {
 }
 
 const AUTH_PATH = {
-  login: '?login',
-  register: '?register',
+  LOGIN: '?login',
+  REGISTER: '?register',
 }
 
 export { APP_PATH, AUTH_PATH }
