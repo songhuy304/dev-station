@@ -15,5 +15,13 @@
     "english": "English",
     "vietnamese": "Tiếng Việt",
     "switch": "Switch Language"
+  },
+
+  "validationMessage": {
+    "required": "Please fill out this field",
+    "mustBeInteger": "This field must be an integer",
+    "invalidEmail": "Please enter a valid email.",
+    "mustBeLeast": "This field must be at least {{num}} characters",
+    "mustNotExceed": "This field must not exceed {{num}} characters"
   }
 }

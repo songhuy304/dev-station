@@ -1,3 +1,7 @@
+type AuthModalType = 'login' | 'register' | 'reset' | 'forgot'
+
+const AUTH_MODAL_QUERY_KEY = 'auth'
+
 const APP_PATH = {
   HOME: '/',
   COURSES: '/courses',
@@ -6,9 +10,4 @@ const APP_PATH = {
   PROJECTS: '/projects',
 }
 
-const AUTH_PATH = {
-  LOGIN: '?login',
-  REGISTER: '?register',
-}
-
-export { APP_PATH, AUTH_PATH }
+export { APP_PATH, AUTH_MODAL_QUERY_KEY, type AuthModalType }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PageHeader from '@/components/page-header/page-header.vue'
-import LoginModal from '@/features/auth/loginModal.vue'
+import LoginModal from '@/features/auth/LoginModal.vue'
 import { ref } from 'vue'
 
 const loginOpen = ref(false)

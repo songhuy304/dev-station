@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { Button, InputField } from '@/components'
-import { AUTH_PATH } from '@/router'
-import { loginSchema } from '@/schemas/login'
+import { useAuthSchema } from '@/schemas'
+import { useAuth } from '@/shared/hooks'
 import type { LoginFormData } from '@/shared/types'
 import { useForm } from 'vee-validate'
-import { RouterLink } from 'vue-router'
 
 const emit = defineEmits<{
   submit: [values: LoginFormData]
 }>()
+
+const { loginSchema } = useAuthSchema()
+const { openModal } = useAuth()
 
 const { handleSubmit, meta } = useForm({
   validationSchema: loginSchema,
@@ -31,9 +33,9 @@ const onSubmit = handleSubmit((values) => {
 
     <p class="text-right text-sm text-muted-foreground">
       Don't have an account?
-      <RouterLink class="text-blue-500 font-medium hover:underline" :to="AUTH_PATH.REGISTER">
+      <span class="text-blue-500 font-medium hover:underline" @click="openModal('register')">
         Sign up
-      </RouterLink>
+      </span>
     </p>
 
     <Button :disabled="!meta.valid" type="submit" class="w-full">Sign In</Button>

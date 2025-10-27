@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components'
-import LoginForm from './loginForm.vue'
 import type { LoginFormData } from '@/shared/types'
+import { LoginForm } from '.'
 
 const props = defineProps<{
   open: boolean
