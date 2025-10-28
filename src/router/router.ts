@@ -1,15 +1,9 @@
-import {
-  BookOpenIcon,
-  ClipboardListIcon,
-  FileTextIcon,
-  LayoutDashboardIcon,
-  UserCheckIcon,
-} from 'lucide-vue-next'
-import { createRouter, createWebHistory } from 'vue-router'
-import { APP_PATH } from './base-router'
 import * as Page from '@/pages'
 import { APP_NAME } from '@/shared/constants'
 import { i18n } from '@/shared/i18n/i18n'
+import { BookOpen, Frame, LayoutDashboardIcon, Map, UserCheckIcon } from 'lucide-vue-next'
+import { createRouter, createWebHistory } from 'vue-router'
+import { APP_PATH } from './base-router'
 
 const routes = [
   {
@@ -21,7 +15,7 @@ const routes = [
   {
     path: APP_PATH.COURSES,
     component: Page.HomePage,
-    icon: BookOpenIcon,
+    icon: Map,
     name: 'courses',
   },
   {
@@ -33,13 +27,13 @@ const routes = [
   {
     path: APP_PATH.PROJECTS,
     component: Page.HomePage,
-    icon: ClipboardListIcon,
+    icon: Frame,
     name: 'projects',
   },
   {
     path: APP_PATH.QUIZZES,
     component: Page.HomePage,
-    icon: FileTextIcon,
+    icon: BookOpen,
     name: 'quizzes',
   },
 ]

@@ -10,7 +10,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Card class="py-12 bg-card-pageHeader shadow-lg backdrop-blur-2xl">
+  <Card class="py-12 backdrop-blur-2xl bg-card-pageHeader">
     <CardContent class="px-18 flex justify-between items-center">
       <div class="space-y-3 max-w-[425px]">
         <h1 class="text-4xl font-bold">{{ props.title }}</h1>
