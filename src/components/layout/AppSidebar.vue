@@ -11,9 +11,9 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import { routes } from '@/router'
-import { Command } from 'lucide-vue-next'
-import NavMain from './NavMain.vue'
 import { RouterLink } from 'vue-router'
+import AppLogo from '../ui/logo/AppLogo.vue'
+import NavMain from './NavMain.vue'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
   variant: 'inset',
@@ -27,11 +27,7 @@ const props = withDefaults(defineProps<SidebarProps>(), {
         <SidebarMenuItem>
           <SidebarMenuButton size="lg" as-child>
             <RouterLink to="/">
-              <div
-                class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
-              >
-                <Command class="size-4" />
-              </div>
+              <AppLogo />
               <div class="grid flex-1 text-left text-lg leading-tight">
                 <span class="truncate font-semibold">Dev Station</span>
               </div>
