@@ -21,5 +21,23 @@ export const useAuthSchema = () => {
 
   const loginSchema = toTypedSchema(loginZodSchema)
 
-  return { loginSchema }
+  // Register schema
+  const registerZodSchema = z.object({
+    name: z
+      .string()
+      .min(2, t('validationMessage.mustBeLeast', { num: 2 }))
+      .max(50, t('validationMessage.mustNotExceed', { num: 50 })),
+    email: z
+      .string()
+      .min(1, t('validationMessage.required'))
+      .email(t('validationMessage.invalidEmail')),
+    password: z
+      .string()
+      .min(minLen, t('validationMessage.mustBeLeast', { num: minLen }))
+      .max(maxLen, t('validationMessage.mustNotExceed', { num: maxLen })),
+  })
+
+  const registerSchema = toTypedSchema(registerZodSchema)
+
+  return { loginSchema, registerSchema }
 }

@@ -1,1 +1,5 @@
 export { default as HomePage } from './home/HomePage.vue'
+export { default as CoursesPage } from './courses/CoursesPage.vue'
+export { default as InterviewsPage } from './interviews/InterviewsPage.vue'
+export { default as ProjectsPage } from './projects/ProjectsPage.vue'
+export { default as QuizzesPage } from './quizzes/QuizzesPage.vue'

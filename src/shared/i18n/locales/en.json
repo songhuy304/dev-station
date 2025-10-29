@@ -1,4 +1,9 @@
 {
+  "welcomeBack": "WelcomeBack",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "signInToYourAccount": "Sign in to your account to continue.",
+  "dontHaveAnAccount": "Don't have an account?",
   "app": {
     "title": "Dev Station",
     "home": "Home",
@@ -16,6 +21,29 @@
     "vietnamese": "Tiếng Việt",
     "switch": "Switch Language"
   },
+
+  "fields": {
+    "name": {
+      "label": "Full name",
+      "placeholder": "Enter your full name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email address"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "placeholder": "Confirm your password"
+    }
+  },
+
+  "or": "Or",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "signUpWith": "Sign up with {{provider}}",
 
   "validationMessage": {
     "required": "Please fill out this field",

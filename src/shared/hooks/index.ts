@@ -1,2 +1,2 @@
 export * from './useLanguage'
-export * from './useAuth'
+export * from './use-auth'

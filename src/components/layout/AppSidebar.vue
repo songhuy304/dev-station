@@ -10,7 +10,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { routes } from '@/router'
 import { RouterLink } from 'vue-router'
 import AppLogo from '../ui/logo/AppLogo.vue'
 import NavMain from './NavMain.vue'
@@ -37,7 +36,7 @@ const props = withDefaults(defineProps<SidebarProps>(), {
       </SidebarMenu>
     </SidebarHeader>
     <SidebarContent>
-      <NavMain :items="routes" />
+      <NavMain />
     </SidebarContent>
     <SidebarFooter>
       <!-- <NavUser :user="data.user" /> -->

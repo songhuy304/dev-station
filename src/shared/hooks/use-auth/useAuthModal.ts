@@ -3,7 +3,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/shared/stores'
 import { AUTH_MODAL_QUERY_KEY, type AuthModalType } from '@/router'
 
-export const useAuth = () => {
+export const useAuthModal = () => {
   const userStore = useUserStore()
   const router = useRouter()
   const route = useRoute()
@@ -39,7 +39,7 @@ export const useAuth = () => {
     })
   }
 
-  const closeLoginModal = () => {
+  const closeModal = () => {
     const newQuery = { ...route.query }
     delete newQuery[AUTH_MODAL_QUERY_KEY]
     router.replace({ query: newQuery })
@@ -49,7 +49,7 @@ export const useAuth = () => {
     isLogin,
     requireLogin,
     openModal,
-    closeLoginModal,
+    closeModal,
 
     showRegister,
     showLogin,

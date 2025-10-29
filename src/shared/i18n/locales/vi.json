@@ -1,19 +1,54 @@
 {
+  "welcomeBack": "WelcomeBack",
   "app": {
-    "title": "Trạm Phát Triển",
-    "home": "Trang Chủ",
-    "courses": "Khóa Học",
-    "interviews": "Phỏng Vấn",
-    "projects": "Dự Án",
-    "quizzes": "Kiểm Tra"
+    "title": "Dev Station",
+    "home": "Home",
+    "courses": "Courses",
+    "interviews": "Interviews",
+    "projects": "Projects",
+    "quizzes": "Quizzes"
   },
   "home": {
-    "title": "Trang Chủ",
-    "description": "Trang chủ"
+    "title": "Home",
+    "description": "Home page"
   },
   "language": {
     "english": "English",
     "vietnamese": "Tiếng Việt",
-    "switch": "Chuyển Ngôn Ngữ"
+    "switch": "Switch Language"
+  },
+
+  "signIn": "Đăng nhập",
+  "signUp": "Đăng ký",
+  "dontHaveAnAccount": "Chưa có tài khoản?",
+  "alreadyHaveAnAccount": "Đã có tài khoản?",
+  "or": "Hoặc",
+  "signUpWith": "Đăng ký với {{provider}}",
+
+  "fields": {
+    "name": {
+      "label": "Họ và tên",
+      "placeholder": "Nhập họ và tên"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Nhập email"
+    },
+    "password": {
+      "label": "Mật khẩu",
+      "placeholder": "Nhập mật khẩu"
+    },
+    "confirmPassword": {
+      "label": "Xác nhận mật khẩu",
+      "placeholder": "Xác nhận mật khẩu"
+    }
+  },
+
+  "validationMessage": {
+    "required": "Please fill out this field",
+    "mustBeInteger": "This field must be an integer",
+    "invalidEmail": "Please enter a valid email.",
+    "mustBeLeast": "This field must be at least {{num}} characters",
+    "mustNotExceed": "This field must not exceed {{num}} characters"
   }
 }
