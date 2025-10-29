@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronsUpDown, LogOut, Settings, User } from 'lucide-vue-next'
+import { ChevronDown, LogOut, Settings, User } from 'lucide-vue-next'
 import { computed } from 'vue'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -11,16 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from '@/components/ui/sidebar'
-import { useRouter } from 'vue-router'
+import { SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar'
 import { useUserStore } from '@/shared/stores/useUserStore'
+import { useRouter } from 'vue-router'
+import { Button } from '../ui'
 
-const { isMobile } = useSidebar()
 const router = useRouter()
 const userStore = useUserStore()
 
@@ -49,24 +44,20 @@ function logout() {
     <SidebarMenuItem>
       <DropdownMenu>
         <DropdownMenuTrigger as-child>
-          <SidebarMenuButton
-            size="lg"
-            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-          >
+          <Button size="lg" variant="ghost">
             <Avatar class="h-8 w-8 rounded-lg">
               <AvatarImage :src="currentUser.avatar" :alt="currentUser.name" />
               <AvatarFallback class="rounded-lg"> CN </AvatarFallback>
             </Avatar>
-            <div class="grid flex-1 text-left text-sm leading-tight">
+            <div class="grid flex-1 text-left text-sm leading-tight text-muted-foreground">
               <span class="truncate font-medium">{{ currentUser.name }}</span>
-              <span class="truncate text-xs">{{ currentUser.email }}</span>
             </div>
-            <ChevronsUpDown class="ml-auto size-4" />
-          </SidebarMenuButton>
+            <ChevronDown class="ml-auto size-4" />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           class="w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-          :side="isMobile ? 'bottom' : 'right'"
+          side="bottom"
           align="end"
           :side-offset="4"
         >

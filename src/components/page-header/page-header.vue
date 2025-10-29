@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Button, Card, CardContent } from '@/components/ui'
+import type { VNode } from 'vue'
 
 const props = defineProps<{
-  title: string
+  title: string | VNode
   description?: string
   buttonText?: string
   onButtonClick?: () => void

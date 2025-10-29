@@ -1,4 +1,11 @@
-import { LayoutDashboard, type LucideIcon } from 'lucide-vue-next'
+import {
+  BookOpen,
+  Brain,
+  Code2,
+  HelpCircle,
+  LayoutDashboard,
+  type LucideIcon,
+} from 'lucide-vue-next'
 
 type AuthModalType = 'login' | 'register' | 'reset' | 'forgot'
 
@@ -25,33 +32,26 @@ const SIDEBAR_ITEMS: ISideBar[] = [
     path: APP_PATH.HOME,
     icon: LayoutDashboard,
     title: 'home',
-    items: [
-      {
-        path: APP_PATH.HOME,
-        icon: LayoutDashboard,
-        title: 'hehehe',
-      },
-    ],
   },
   {
     path: APP_PATH.COURSES,
-    icon: LayoutDashboard,
+    icon: BookOpen,
     title: 'courses',
   },
   {
     path: APP_PATH.INTERVIEWS,
-    icon: LayoutDashboard,
+    icon: HelpCircle,
     title: 'interviews',
   },
   {
     path: APP_PATH.PROJECTS,
+    icon: Code2,
     title: 'projects',
-    icon: LayoutDashboard,
   },
   {
     path: APP_PATH.QUIZZES,
+    icon: Brain,
     title: 'quizzes',
-    icon: LayoutDashboard,
   },
 ]
 

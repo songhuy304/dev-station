@@ -21,7 +21,7 @@ const { t } = useI18n()
 
 <template>
   <SidebarGroup>
-    <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroupLabel>{{ t('menu') }}</SidebarGroupLabel>
     <SidebarMenu>
       <Collapsible
         v-for="item in SIDEBAR_ITEMS"
@@ -31,7 +31,7 @@ const { t } = useI18n()
       >
         <SidebarMenuItem>
           <SidebarMenuButton as-child :tooltip="t(`app.${item.title}`)">
-            <RouterLink :to="item.path">
+            <RouterLink :to="item.path" active-class="text-primary">
               <component :is="item.icon" />
               <span>{{ t(`app.${item.title}`) }}</span>
             </RouterLink>

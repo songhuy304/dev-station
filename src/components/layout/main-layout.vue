@@ -11,7 +11,7 @@ import AppHeader from './AppHeader.vue'
     <AppSidebar />
     <SidebarInset>
       <AppHeader />
-      <RouterView v-slot="{ Component, route }" class="px-10">
+      <RouterView v-slot="{ Component, route }">
         <Motion
           :key="route.path"
           :initial="{ opacity: 0, scale: 0.98, filter: 'blur(4px)' }"

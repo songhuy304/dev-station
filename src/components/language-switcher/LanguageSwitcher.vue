@@ -7,7 +7,7 @@ const { currentLanguage, currentFlag, currentLanguageName, changeLanguage } = us
 </script>
 
 <template>
-  <Button variant="outline" size="sm" class="gap-2 cursor-pointer" @click="changeLanguage">
+  <Button variant="secondary" size="sm" class="gap-2 cursor-pointer" @click="changeLanguage">
     <img :src="currentFlag" :alt="currentLanguage" class="w-4 h-4 rounded-sm" />
     <span class="hidden sm:inline">{{ currentLanguageName }}</span>
     <Icon icon="lucide:refresh-cw" class="h-4 w-4" />
