@@ -31,7 +31,7 @@ provide(TabFilterKey, {
   <div
     :class="
       cn(
-        'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
+        'dark:bg-muted bg-background bg text-muted-foreground shadow-md flex w-fit h-10 items-center justify-center rounded-lg p-[3px]',
         props.class,
       )
     "

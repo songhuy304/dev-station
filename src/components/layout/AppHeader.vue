@@ -2,8 +2,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import LanguageSwitcher from '@/components/language-switcher/LanguageSwitcher.vue'
-import DarkModeToggle from '@/components/darkmode/DarkModeToggle.vue'
+
 import NavUser from '@/components/layout/NavUser.vue'
 import {
   Breadcrumb,
@@ -15,6 +14,8 @@ import {
   Separator,
   SidebarTrigger,
 } from '@/components/ui'
+import { LanguageSwitcher } from '../language-switcher'
+import DarkModeToggle from '../darkmode/DarkModeToggle.vue'
 
 const router = useRouter()
 const { t } = useI18n()

@@ -39,7 +39,7 @@ const { t } = useI18n()
           </CollapsibleTrigger>
 
           <SidebarMenuButton v-else as-child>
-            <RouterLink :to="item.path" active-class="text-primary">
+            <RouterLink :to="item.path ? item.path : '/'" active-class="text-primary">
               <component :is="item.icon" />
               <span>{{ t(`app.${item.title}`) }}</span>
             </RouterLink>
@@ -55,7 +55,7 @@ const { t } = useI18n()
               <SidebarMenuSub>
                 <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
                   <SidebarMenuSubButton as-child>
-                    <RouterLink :to="subItem.path" active-class="text-primary">
+                    <RouterLink :to="subItem.path ? subItem.path : '/'" active-class="text-primary">
                       <component :is="subItem.icon" />
                       <span>{{ t(`app.${subItem.title}`) }}</span>
                     </RouterLink>

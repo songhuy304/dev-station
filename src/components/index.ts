@@ -1,3 +1,6 @@
 export * from './ui'
 export * from './page-header'
 export * from './language-switcher'
+export * from './tab-filter'
+export * from './animation'
+export * from './darkmode/DarkModeToggle.vue'

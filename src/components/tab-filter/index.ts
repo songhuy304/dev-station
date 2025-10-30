@@ -6,3 +6,6 @@ export interface TabFilterContext {
 }
 
 export const TabFilterKey: InjectionKey<TabFilterContext> = Symbol('tabFilter')
+
+export { default as TabFilter } from './TabFilter.vue'
+export { default as TabFilterItem } from './TabFilterItem.vue'

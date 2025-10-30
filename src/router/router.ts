@@ -32,7 +32,7 @@ const router = createRouter({
       meta: { title: 'projects' },
     },
     {
-      path: APP_PATH.QUIZZES,
+      path: APP_PATH.QUIZZES.base,
       component: Page.QuizzesPage,
       name: 'quizzes',
       meta: { title: 'quizzes' },
