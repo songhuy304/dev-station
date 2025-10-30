@@ -22,7 +22,7 @@ const userStore = useUserStore()
 
 const currentUser = computed(() => {
   const profile = userStore.getProfile
-  const name = profile?.userName ?? 'Guest User'
+  const name = profile?.name ?? 'Guest User'
   const email = profile?.email ?? 'guest@example.com'
   const avatar = `https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(name)}`
   return { name, email, avatar }

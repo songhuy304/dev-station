@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import type { IProfile } from '@/shared/types'
+import type { IUser } from '@/shared/types'
 import { LocalStorageHelper } from '../utils'
 
 interface UserStoreState {
-  profile: IProfile | null
+  profile: IUser | null
   isAuthenticated: boolean
 }
 
@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', {
   }),
 
   actions: {
-    setProfile(payload: IProfile) {
+    setProfile(payload: IUser) {
       this.profile = payload
     },
     setLogin() {
