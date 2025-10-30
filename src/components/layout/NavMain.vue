@@ -21,41 +21,61 @@ const { t } = useI18n()
 
 <template>
   <SidebarGroup>
-    <SidebarGroupLabel>{{ t('menu') }}</SidebarGroupLabel>
+    <SidebarGroupLabel>Platform</SidebarGroupLabel>
     <SidebarMenu>
       <Collapsible
         v-for="item in SIDEBAR_ITEMS"
         :key="item.title"
         as-child
         :default-open="item.isActive"
+        class="group/collapsible"
       >
         <SidebarMenuItem>
-          <SidebarMenuButton as-child :tooltip="t(`app.${item.title}`)">
+          <CollapsibleTrigger v-if="item.items?.length" as-child>
+            <SidebarMenuButton :tooltip="item.title">
+              <component :is="item.icon" />
+              <span>{{ t(`app.${item.title}`) }}</span>
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
+
+          <SidebarMenuButton v-else as-child>
             <RouterLink :to="item.path" active-class="text-primary">
               <component :is="item.icon" />
               <span>{{ t(`app.${item.title}`) }}</span>
             </RouterLink>
           </SidebarMenuButton>
+
           <template v-if="item.items?.length">
-            <CollapsibleTrigger as-child>
-              <SidebarMenuAction class="data-[state=open]:rotate-90">
-                <ChevronRight />
-                <span class="sr-only">Toggle</span>
-              </SidebarMenuAction>
-            </CollapsibleTrigger>
+            <SidebarMenuAction class="group-data-[state=open]/collapsible:rotate-90">
+              <ChevronRight />
+              <span class="sr-only">Toggle</span>
+            </SidebarMenuAction>
+
             <CollapsibleContent>
               <SidebarMenuSub>
                 <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
                   <SidebarMenuSubButton as-child>
-                    <RouterLink :to="item.path">
-                      <component :is="item.icon" />
-                      <span>{{ t(`app.${item.title}`) }}</span>
+                    <RouterLink :to="subItem.path" active-class="text-primary">
+                      <component :is="subItem.icon" />
+                      <span>{{ t(`app.${subItem.title}`) }}</span>
                     </RouterLink>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               </SidebarMenuSub>
             </CollapsibleContent>
           </template>
+
+          <CollapsibleContent>
+            <SidebarMenuSub>
+              <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
+                <SidebarMenuSubButton as-child>
+                  <a :href="subItem.path">
+                    <span>{{ subItem.title }}</span>
+                  </a>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+            </SidebarMenuSub>
+          </CollapsibleContent>
         </SidebarMenuItem>
       </Collapsible>
     </SidebarMenu>

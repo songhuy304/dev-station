@@ -4,7 +4,6 @@ import { LoginModal } from './Login'
 import { RegisterModal } from './Register'
 
 const { showLogin, showRegister, closeModal } = useAuthModal()
-console.log('🚀 ~ showLogin:', showLogin)
 </script>
 
 <template>

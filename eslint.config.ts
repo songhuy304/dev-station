@@ -6,14 +6,15 @@ export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}'],
-    rules: {
-      'vue/multi-word-component-names': 'off', // <--- tắt rule này
-    },
+   
   },
   {
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
   pluginVue.configs['flat/essential'],
+   rules: {
+      'vue/multi-word-component-names': 'off',
+    },
   vueTsConfigs.recommended,
   skipFormatting,
 )

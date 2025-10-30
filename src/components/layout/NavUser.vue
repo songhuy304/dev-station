@@ -10,11 +10,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar'
+  SidebarMenu,
+  SidebarMenuItem,
+  Button,
+} from '@/components'
 import { useUserStore } from '@/shared/stores/useUserStore'
 import { useRouter } from 'vue-router'
-import { Button } from '../ui'
 
 const router = useRouter()
 const userStore = useUserStore()

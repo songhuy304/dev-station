@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/shared/stores'
-import { AUTH_MODAL_QUERY_KEY, type AuthModalType } from '@/router'
+import { AUTH_MODAL_QUERY_KEY, type AuthModalType } from '@/shared/types'
 
 export const useAuthModal = () => {
   const userStore = useUserStore()

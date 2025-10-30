@@ -1,30 +1,28 @@
+import type { ISideBar } from '@/shared/types'
 import {
   BookOpen,
   Brain,
-  Code2,
+  FolderOpen,
   HelpCircle,
   LayoutDashboard,
-  type LucideIcon,
+  ListChecks,
+  Trophy,
 } from 'lucide-vue-next'
 
-type AuthModalType = 'login' | 'register' | 'reset' | 'forgot'
-
-const AUTH_MODAL_QUERY_KEY = 'auth'
+export const quiz_path = () => {
+  return {
+    base: '/quizzes',
+    leaderboard: '/quizzes/leaderboard',
+    myQuizzes: '/quizzes/my-quizzes',
+  }
+}
 
 const APP_PATH = {
   HOME: '/',
   COURSES: '/courses',
-  QUIZZES: '/quizzes',
+  QUIZZES: quiz_path(),
   INTERVIEWS: '/interviews',
   PROJECTS: '/projects',
-}
-
-interface ISideBar {
-  title: string
-  path: string
-  icon: LucideIcon
-  isActive?: boolean
-  items?: ISideBar[]
 }
 
 const SIDEBAR_ITEMS: ISideBar[] = [
@@ -44,15 +42,26 @@ const SIDEBAR_ITEMS: ISideBar[] = [
     title: 'interviews',
   },
   {
-    path: APP_PATH.PROJECTS,
-    icon: Code2,
-    title: 'projects',
-  },
-  {
-    path: APP_PATH.QUIZZES,
     icon: Brain,
     title: 'quizzes',
+    items: [
+      {
+        path: APP_PATH.QUIZZES.base,
+        icon: FolderOpen,
+        title: 'all-quizzes',
+      },
+      {
+        path: APP_PATH.QUIZZES.myQuizzes,
+        icon: ListChecks,
+        title: 'my-quizzes',
+      },
+      {
+        path: APP_PATH.QUIZZES.leaderboard,
+        icon: Trophy,
+        title: 'leaderboard',
+      },
+    ],
   },
 ]
 
-export { APP_PATH, AUTH_MODAL_QUERY_KEY, SIDEBAR_ITEMS, type AuthModalType }
+export { APP_PATH, SIDEBAR_ITEMS }
