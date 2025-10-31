@@ -37,6 +37,12 @@ const router = createRouter({
       name: 'quizzes',
       meta: { title: 'quizzes' },
     },
+    {
+      path: APP_PATH.QUIZZES.detail,
+      component: Page.QuizDetail,
+      name: 'quizzes-details',
+      meta: { title: 'quiz-details' },
+    },
   ],
 })
 

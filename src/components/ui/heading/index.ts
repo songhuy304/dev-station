@@ -28,3 +28,5 @@ export const headingVariants = cva('tracking-tight', {
 })
 
 export type HeadingVariants = VariantProps<typeof headingVariants>
+
+export { default as Heading } from './Heading.vue'

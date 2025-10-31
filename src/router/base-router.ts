@@ -14,6 +14,7 @@ export const quiz_path = () => {
     base: '/quizzes',
     leaderboard: '/quizzes/leaderboard',
     myQuizzes: '/quizzes/my-quizzes',
+    detail: '/quizzes/:id',
   }
 }
 
