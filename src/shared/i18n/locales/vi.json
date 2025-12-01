@@ -41,14 +41,31 @@
     "confirmPassword": {
       "label": "Xác nhận mật khẩu",
       "placeholder": "Xác nhận mật khẩu"
+    },
+    "phoneNumber": {
+      "label": "Số điện thoại",
+      "placeholder": "Nhập số điện thoại"
+    },
+    "location": {
+      "label": "Địa điểm",
+      "placeholder": "Nhập địa điểm"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "placeholder": "Nhập URL LinkedIn của bạn"
+    },
+    "github": {
+      "label": "GitHub",
+      "placeholder": "Nhập URL GitHub của bạn"
     }
   },
 
   "validationMessage": {
-    "required": "Please fill out this field",
-    "mustBeInteger": "This field must be an integer",
-    "invalidEmail": "Please enter a valid email.",
-    "mustBeLeast": "This field must be at least {{num}} characters",
-    "mustNotExceed": "This field must not exceed {{num}} characters"
+    "required": "Vui lòng điền vào trường này",
+    "mustBeInteger": "Trường này phải là số nguyên",
+    "invalidEmail": "Vui lòng nhập email hợp lệ.",
+    "invalidUrl": "Vui lòng nhập URL hợp lệ",
+    "mustBeLeast": "Trường này phải có ít nhất {{num}} ký tự",
+    "mustNotExceed": "Trường này không được vượt quá {{num}} ký tự"
   }
 }

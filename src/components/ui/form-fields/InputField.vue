@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+import { Field as VeeField } from 'vee-validate'
+
 import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
+  Field as UiField,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import InputPassword from '../input-password/InputPassword.vue'
 
@@ -17,6 +19,8 @@ interface Props {
   placeholder?: string
   disabled?: boolean
   type?: 'text' | 'password' | 'email'
+  required?: boolean
+  labelIcon?: Component
 }
 
 withDefaults(defineProps<Props>(), {
@@ -25,22 +29,32 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <FormField v-slot="{ componentField }" :name="name">
-    <FormItem>
-      <FormLabel v-if="label">{{ label }}</FormLabel>
-      <FormControl>
+  <VeeField v-slot="{ field, errors }" :name="name" :validate-on-input="true">
+    <UiField :data-invalid="!!errors?.length">
+      <FieldLabel v-if="label" :for="name" class="flex items-center gap-1">
+        <span v-if="labelIcon" aria-hidden="true">
+          <component :is="labelIcon" class="size-4" />
+        </span>
+        <span>{{ label }}</span>
+        <span v-if="required" class="text-destructive" aria-hidden="true"> * </span>
+      </FieldLabel>
+
+      <FieldContent>
         <component
           :is="type === 'password' ? InputPassword : Input"
+          :id="name"
           :type="type"
           :placeholder="placeholder"
           :disabled="disabled"
-          v-bind="componentField"
+          :aria-invalid="!!errors?.length"
+          v-bind="field"
         />
-      </FormControl>
-      <FormDescription v-if="description">
-        {{ description }}
-      </FormDescription>
-      <FormMessage />
-    </FormItem>
-  </FormField>
+
+        <FieldDescription v-if="description">
+          {{ description }}
+        </FieldDescription>
+        <FieldError v-if="errors.length" :errors="errors" />
+      </FieldContent>
+    </UiField>
+  </VeeField>
 </template>

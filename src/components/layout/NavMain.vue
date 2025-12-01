@@ -64,18 +64,6 @@ const { t } = useI18n()
               </SidebarMenuSub>
             </CollapsibleContent>
           </template>
-
-          <CollapsibleContent>
-            <SidebarMenuSub>
-              <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
-                <SidebarMenuSubButton as-child>
-                  <a :href="subItem.path">
-                    <span>{{ subItem.title }}</span>
-                  </a>
-                </SidebarMenuSubButton>
-              </SidebarMenuSubItem>
-            </SidebarMenuSub>
-          </CollapsibleContent>
         </SidebarMenuItem>
       </Collapsible>
     </SidebarMenu>

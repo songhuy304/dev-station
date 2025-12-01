@@ -14,10 +14,10 @@ const router = createRouter({
       meta: { title: 'home' },
     },
     {
-      path: APP_PATH.COURSES,
-      component: Page.CoursesPage,
-      name: 'courses',
-      meta: { title: 'courses' },
+      path: APP_PATH.RESUME,
+      component: Page.ResumePage,
+      name: 'resume',
+      meta: { title: 'resume' },
     },
     {
       path: APP_PATH.INTERVIEWS,

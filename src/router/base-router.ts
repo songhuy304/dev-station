@@ -24,6 +24,7 @@ const APP_PATH = {
   QUIZZES: quiz_path(),
   INTERVIEWS: '/interviews',
   PROJECTS: '/projects',
+  RESUME: '/resume',
 }
 
 const SIDEBAR_ITEMS: ISideBar[] = [
@@ -33,9 +34,9 @@ const SIDEBAR_ITEMS: ISideBar[] = [
     title: 'home',
   },
   {
-    path: APP_PATH.COURSES,
+    path: APP_PATH.RESUME,
     icon: BookOpen,
-    title: 'courses',
+    title: 'resume',
   },
   {
     path: APP_PATH.INTERVIEWS,
@@ -49,7 +50,7 @@ const SIDEBAR_ITEMS: ISideBar[] = [
       {
         path: APP_PATH.QUIZZES.base,
         icon: FolderOpen,
-        title: 'all-quizzes',
+        title: 'list-quizzes',
       },
       {
         path: APP_PATH.QUIZZES.myQuizzes,

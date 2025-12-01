@@ -11,7 +11,11 @@
     "courses": "Courses",
     "interviews": "Interviews",
     "projects": "Projects",
-    "quizzes": "Quizzes"
+    "quizzes": "Quizzes",
+    "resume": "Resume",
+    "list-quizzes": "List Quizzes",
+    "my-quizzes": "My Quizzes",
+    "leaderboard": "leaderboard"
   },
   "home": {
     "title": "Home",
@@ -39,6 +43,22 @@
     "confirmPassword": {
       "label": "Confirm Password",
       "placeholder": "Confirm your password"
+    },
+    "phoneNumber": {
+      "label": "Phone Number",
+      "placeholder": "Enter your phone number"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Enter your location"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "placeholder": "Enter your LinkedIn profile URL"
+    },
+    "github": {
+      "label": "GitHub",
+      "placeholder": "Enter your GitHub profile URL"
     }
   },
 
@@ -50,6 +70,7 @@
     "required": "Please fill out this field",
     "mustBeInteger": "This field must be an integer",
     "invalidEmail": "Please enter a valid email.",
+    "invalidUrl": "Please enter a valid URL",
     "mustBeLeast": "This field must be at least {{num}} characters",
     "mustNotExceed": "This field must not exceed {{num}} characters"
   }
