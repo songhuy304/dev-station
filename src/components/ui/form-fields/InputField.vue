@@ -21,6 +21,7 @@ interface Props {
   type?: 'text' | 'password' | 'email'
   required?: boolean
   labelIcon?: Component
+  class?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -30,7 +31,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <VeeField v-slot="{ field, errors }" :name="name" :validate-on-input="true">
-    <UiField :data-invalid="!!errors?.length">
+    <UiField :data-invalid="!!errors?.length" :class="class">
       <FieldLabel v-if="label" :for="name" class="flex items-center gap-1">
         <span v-if="labelIcon" aria-hidden="true">
           <component :is="labelIcon" class="size-4" />

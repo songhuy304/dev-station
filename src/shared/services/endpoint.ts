@@ -8,10 +8,19 @@ export const QuizManagement = () => {
   }
 }
 
+export const userEndpoints = () => {
+  const base = 'user'
+
+  return {
+    logout: `${base}/logout`,
+    me: `${base}/me`,
+  }
+}
+
 export const apiEndpoints = {
   login: '/auth/login',
   register: '/auth/register',
-  me: '/auth/me',
 
   quiz: QuizManagement(),
+  user: userEndpoints(),
 }

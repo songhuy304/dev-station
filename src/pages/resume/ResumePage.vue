@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { Button, Heading, Text } from '@/components'
 import { PageContent, ResumePreview } from '@/features/resume'
-import { Eye, FileUp, LucideLinkedin } from 'lucide-vue-next'
+import { useResumeSchema } from '@/schemas'
+import { Eye, FileUp } from 'lucide-vue-next'
+import { useForm } from 'vee-validate'
+
+const { resumeBasicSchema } = useResumeSchema()
+const { values } = useForm({
+  validationSchema: resumeBasicSchema,
+})
 </script>
 
 <template>
@@ -16,6 +23,11 @@ import { Eye, FileUp, LucideLinkedin } from 'lucide-vue-next'
       </div>
 
       <div className="flex gap-2 flex-wrap">
+        <Button>
+          <Eye className="mr-2 h-4 w-4" />
+          Save changes
+        </Button>
+
         <Button variant="outline">
           <Eye className="mr-2 h-4 w-4" />
           Preview
@@ -26,16 +38,16 @@ import { Eye, FileUp, LucideLinkedin } from 'lucide-vue-next'
           Parse from CV
         </Button>
 
-        <Button variant="outline">
+        <!-- <Button variant="outline">
           <LucideLinkedin />
           Parse from LinkedIn
-        </Button>
+        </Button> -->
       </div>
     </div>
 
     <div class="flex gap-8">
       <PageContent />
-      <ResumePreview />
+      <ResumePreview :resumeData="values" />
     </div>
   </div>
 </template>

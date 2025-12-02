@@ -1,12 +1,23 @@
 <script setup lang="ts">
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components'
-import type { LoginFormData } from '@/shared/types'
+import { useAuthModal, useLogin } from '@/shared/hooks'
+import type { IAuthTokenResponse } from '@/shared/types'
 import LoginForm from './LoginForm.vue'
+import { setToken } from '@/shared/utils'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+import type { LoginFormData } from '@/schemas'
+import { useUserStore } from '@/shared/stores'
 
 const props = defineProps<{
   open: boolean
   onClose: () => void
 }>()
+
+const { t } = useI18n()
+const { closeModal } = useAuthModal()
+const { mutate: login, isPending } = useLogin()
+const authStore = useUserStore()
 
 const emit = defineEmits<{
   'update:open': [value: boolean]
@@ -18,8 +29,19 @@ const onChangeOpen = (value: boolean) => {
     props.onClose()
   }
 }
-const onSubmit = (values: LoginFormData) => {
-  console.log(values)
+
+const onSubmit = async (values: LoginFormData) => {
+  login(values, {
+    onSuccess: (data: IAuthTokenResponse) => {
+      setToken('at', data.accessToken)
+      setToken('rft', data.refreshToken)
+      authStore.setLogin()
+      closeModal()
+    },
+    onError: (error) => {
+      toast.warning(t(error.errorCode))
+    },
+  })
 }
 </script>
 
@@ -32,7 +54,7 @@ const onSubmit = (values: LoginFormData) => {
       </DialogHeader>
 
       <div class="mt-8">
-        <LoginForm @submit="onSubmit" />
+        <LoginForm :is-loading="isPending" @submit="onSubmit" />
       </div>
     </DialogContent>
   </Dialog>

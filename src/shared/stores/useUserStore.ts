@@ -21,10 +21,12 @@ export const useUserStore = defineStore('user', {
     },
     setLogin() {
       this.isAuthenticated = true
+      LocalStorageHelper.setItem<boolean>('isAuthenticated', true)
     },
     logout() {
       this.profile = null
       this.isAuthenticated = false
+      LocalStorageHelper.removeItem('isAuthenticated')
     },
   },
 

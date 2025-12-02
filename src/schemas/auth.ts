@@ -1,6 +1,6 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { useI18n } from 'vue-i18n'
-import * as z from 'zod'
+import { z } from 'zod'
 
 const minLen = 6
 const maxLen = 30
@@ -9,10 +9,7 @@ export const useAuthSchema = () => {
   const { t } = useI18n()
 
   const loginZodSchema = z.object({
-    email: z
-      .string()
-      .min(1, t('validationMessage.required'))
-      .email(t('validationMessage.invalidEmail')),
+    username: z.string().min(1, t('validationMessage.required')),
     password: z
       .string()
       .min(minLen, t('validationMessage.mustBeLeast', { num: minLen }))
@@ -21,23 +18,29 @@ export const useAuthSchema = () => {
 
   const loginSchema = toTypedSchema(loginZodSchema)
 
-  // Register schema
   const registerZodSchema = z.object({
-    name: z
+    fullName: z
       .string()
-      .min(2, t('validationMessage.mustBeLeast', { num: 2 }))
-      .max(50, t('validationMessage.mustNotExceed', { num: 50 })),
-    email: z
-      .string()
-      .min(1, t('validationMessage.required'))
-      .email(t('validationMessage.invalidEmail')),
+      .min(2, { message: 'Full name must be at least 2 characters' })
+      .max(100, { message: 'Full name must not exceed 100 characters' }),
+    email: z.string().min(1, { message: 'Email is required' }).email({ message: 'Invalid email' }),
     password: z
       .string()
       .min(minLen, t('validationMessage.mustBeLeast', { num: minLen }))
       .max(maxLen, t('validationMessage.mustNotExceed', { num: maxLen })),
+    username: z.string().min(2, { message: 'Username must be at least 2 characters' }),
   })
 
   const registerSchema = toTypedSchema(registerZodSchema)
 
-  return { loginSchema, registerSchema }
+  return {
+    loginZodSchema,
+    loginSchema,
+    registerZodSchema,
+    registerSchema,
+  }
 }
+
+export type LoginFormData = z.infer<ReturnType<typeof useAuthSchema>['loginZodSchema']>
+
+export type RegisterFormData = z.infer<ReturnType<typeof useAuthSchema>['registerZodSchema']>

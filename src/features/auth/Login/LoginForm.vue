@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { Button, InputField } from '@/components'
-import { useAuthSchema } from '@/schemas'
+import { useAuthSchema, type LoginFormData } from '@/schemas'
 import { useAuthModal } from '@/shared/hooks'
-import type { LoginFormData } from '@/shared/types'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
+
+const { loginSchema } = useAuthSchema()
+const { openModal } = useAuthModal()
+const { t } = useI18n()
 
 const emit = defineEmits<{
   submit: [values: LoginFormData]
 }>()
 
-const { loginSchema } = useAuthSchema()
-const { openModal } = useAuthModal()
-const { t } = useI18n()
+const props = defineProps<{
+  isLoading?: boolean
+}>()
 
 const { handleSubmit, meta } = useForm({
   validationSchema: loginSchema,
@@ -26,11 +29,11 @@ const onSubmit = handleSubmit((values) => {
 <template>
   <form class="space-y-6" @submit="onSubmit">
     <InputField
-      name="email"
-      type="email"
-      :label="t('fields.email.label')"
-      :placeholder="t('fields.email.placeholder')"
+      name="username"
+      :label="t('fields.username.label')"
+      :placeholder="t('fields.username.placeholder')"
     />
+
     <InputField
       name="password"
       type="password"
@@ -48,6 +51,12 @@ const onSubmit = handleSubmit((values) => {
       </span>
     </p>
 
-    <Button :disable="!meta.valid" type="submit" class="w-full">{{ $t('signIn') }}</Button>
+    <Button
+      :loading="props.isLoading"
+      :disabled="!meta.valid || props.isLoading"
+      type="submit"
+      class="w-full"
+      >{{ $t('signIn') }}</Button
+    >
   </form>
 </template>

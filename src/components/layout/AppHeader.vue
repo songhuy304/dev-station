@@ -11,14 +11,19 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  Button,
   Separator,
   SidebarTrigger,
 } from '@/components/ui'
 import { LanguageSwitcher } from '../language-switcher'
 import DarkModeToggle from '../darkmode/DarkModeToggle.vue'
+import { useUserStore } from '@/shared/stores'
+import { useAuthModal } from '@/shared/hooks'
 
 const router = useRouter()
 const { t } = useI18n()
+const userStore = useUserStore()
+const { openModal } = useAuthModal()
 
 const pageTitle = computed(() => router.currentRoute.value.meta.title)
 </script>
@@ -42,7 +47,8 @@ const pageTitle = computed(() => router.currentRoute.value.meta.title)
     <div class="ml-auto flex items-center gap-2 px-4">
       <LanguageSwitcher />
       <DarkModeToggle />
-      <NavUser />
+      <NavUser v-if="userStore.isAuthenticated" />
+      <Button @click="openModal('login')" v-if="!userStore.isAuthenticated">Login</Button>
     </div>
   </header>
 </template>

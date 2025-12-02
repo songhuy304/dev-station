@@ -15,4 +15,10 @@ interface IPaginationDataResponse<T = null> {
   data: T[]
 }
 
-export type { IDataResponse, IPayloadPagination, IPaginationDataResponse }
+interface IErrorResponse {
+  errorCode: string
+  message: string
+  statusCode: string
+}
+
+export type { IDataResponse, IPayloadPagination, IPaginationDataResponse, IErrorResponse }

@@ -1,19 +1,16 @@
-export interface LoginFormData {
-  email: string
-  password: string
-}
-
 export interface ILoginPayload {
-  email: string
+  username: string
   password: string
 }
 
 export interface IRegisterPayload {
-  name: string
+  fullName: string
   email: string
   password: string
+  username: string
 }
 
 export interface IAuthTokenResponse {
-  token: string
+  accessToken: string
+  refreshToken: string
 }

@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components'
 import RegisterForm from './RegisterForm.vue'
-
-interface RegisterFormData {
-  name: string
-  email: string
-  password: string
-}
+import type { RegisterFormData } from '@/schemas'
+import { useAuthModal, useRegister } from '@/shared/hooks'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   open: boolean
   onClose: () => void
 }>()
+
+const { openModal } = useAuthModal()
+const { mutate: register, isPending } = useRegister()
+const { t } = useI18n()
 
 const emit = defineEmits<{
   'update:open': [value: boolean]
@@ -23,8 +25,17 @@ const onChangeOpen = (value: boolean) => {
     props.onClose()
   }
 }
-const onSubmit = (values: RegisterFormData) => {
-  console.log(values)
+
+const onSubmit = async (values: RegisterFormData) => {
+  register(values, {
+    onSuccess: () => {
+      openModal('login')
+      toast.success(t('message.register.success'))
+    },
+    onError: (error) => {
+      toast.warning(t(error.errorCode))
+    },
+  })
 }
 </script>
 
@@ -37,7 +48,7 @@ const onSubmit = (values: RegisterFormData) => {
       </DialogHeader>
 
       <div class="mt-8">
-        <RegisterForm @submit="onSubmit" />
+        <RegisterForm @submit="onSubmit" :isLoading="isPending" />
       </div>
     </DialogContent>
   </Dialog>

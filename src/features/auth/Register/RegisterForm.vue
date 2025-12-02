@@ -1,41 +1,45 @@
 <script setup lang="ts">
 import { Button, InputField } from '@/components'
-import { useAuthSchema } from '@/schemas'
+import { useAuthSchema, type RegisterFormData } from '@/schemas'
 import { useAuthModal } from '@/shared/hooks'
 import { Icon } from '@iconify/vue'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 
-interface RegisterFormData {
-  name: string
-  email: string
-  password: string
-}
-
 const emit = defineEmits<{
   submit: [values: RegisterFormData]
 }>()
 
+const props = defineProps<{
+  isLoading?: boolean
+}>()
+
 const { registerSchema } = useAuthSchema()
+const { openModal } = useAuthModal()
 const { t } = useI18n()
 
 const { handleSubmit, meta } = useForm({
   validationSchema: registerSchema,
 })
-const { openModal } = useAuthModal()
 
 const onSubmit = handleSubmit((values) => {
-  emit('submit', values as RegisterFormData)
+  emit('submit', values)
 })
 </script>
 
 <template>
   <form class="space-y-6" @submit="onSubmit">
     <InputField
-      name="name"
+      name="fullName"
       type="text"
-      :label="t('fields.name.label')"
-      :placeholder="t('fields.name.placeholder')"
+      :label="t('fields.fullName.label')"
+      :placeholder="t('fields.fullName.placeholder')"
+    />
+
+    <InputField
+      name="username"
+      :label="t('fields.username.label')"
+      :placeholder="t('fields.username.placeholder')"
     />
     <InputField
       name="email"
@@ -51,7 +55,9 @@ const onSubmit = handleSubmit((values) => {
     />
 
     <div class="space-y-3">
-      <Button :disabled="!meta.valid" type="submit" class="w-full">{{ t('signUp') }}</Button>
+      <Button :disabled="!meta.valid" :loading="props.isLoading" type="submit" class="w-full">{{
+        t('signUp')
+      }}</Button>
 
       <div class="flex items-center gap-2">
         <div class="h-px flex-1 bg-muted" />

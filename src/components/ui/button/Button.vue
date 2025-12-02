@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { PrimitiveProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
-import type { ButtonVariants } from '.'
-import { Primitive } from 'reka-ui'
 import { cn } from '@/shared/lib/utils'
-import { buttonVariants } from '.'
+import { Primitive, type PrimitiveProps } from 'reka-ui'
+import { type ButtonVariants, buttonVariants } from '.'
+import { Spinner } from '../spinner'
 
 interface Props extends PrimitiveProps {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
   class?: HTMLAttributes['class']
+  disabled?: boolean
+  loading?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -23,7 +24,9 @@ const props = withDefaults(defineProps<Props>(), {
     :as="as"
     :as-child="asChild"
     :class="cn(buttonVariants({ variant, size }), props.class)"
+    :disabled="disabled || loading"
   >
+    <Spinner v-if="loading" />
     <slot />
   </Primitive>
 </template>

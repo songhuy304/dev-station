@@ -4,7 +4,7 @@ import App from './App.vue'
 import { router } from './router'
 import { i18n } from './shared/i18n/i18n'
 import { createPinia } from 'pinia'
-
+import { VueQueryPlugin } from '@tanstack/vue-query'
 const pinia = createPinia()
 
-createApp(App).use(router).use(i18n).use(pinia).mount('#app')
+createApp(App).use(router).use(i18n).use(pinia).use(VueQueryPlugin).mount('#app')
