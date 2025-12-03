@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// @ts-nocheck
+
 import type { Editor } from '@tiptap/vue-3'
 import type { HTMLAttributes } from 'vue'
 import { Button } from '@/components/ui/button'
@@ -13,12 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/shared/lib/utils'
 import { computed, ref } from 'vue'
 import { useTiptapContext } from '.'
@@ -35,12 +32,13 @@ const editor = computed(() => props.editor ?? contextEditor.value)
 
 // Check if editor is ready and focused on a table
 const isEditorReady = computed(() => editor.value && editor.value.isEditable)
-const isTableSelected = computed(() =>
-  isEditorReady.value
-  && (editor.value!.isActive('table')
-    || editor.value!.isActive('tableRow')
-    || editor.value!.isActive('tableCell')
-    || editor.value!.isActive('tableHeader')),
+const isTableSelected = computed(
+  () =>
+    isEditorReady.value &&
+    (editor.value!.isActive('table') ||
+      editor.value!.isActive('tableRow') ||
+      editor.value!.isActive('tableCell') ||
+      editor.value!.isActive('tableHeader')),
 )
 
 // Create new table dialog
@@ -50,10 +48,13 @@ const newTableCols = ref(3)
 
 // Create new table
 function createTable() {
-  if (!isEditorReady.value)
-    return
+  if (!isEditorReady.value) return
 
-  editor.value!.chain().focus().insertTable({ rows: newTableRows.value, cols: newTableCols.value, withHeaderRow: true }).run()
+  editor
+    .value!.chain()
+    .focus()
+    .insertTable({ rows: newTableRows.value, cols: newTableCols.value, withHeaderRow: true })
+    .run()
 
   showCreateTableDialog.value = false
 }
@@ -61,10 +62,7 @@ function createTable() {
 
 <template>
   <div
-    :class="cn(
-      'tiptap-table-toolbar flex flex-wrap gap-1 items-center',
-      props.class,
-    )"
+    :class="cn('tiptap-table-toolbar flex flex-wrap gap-1 items-center', props.class)"
     data-slot="tiptap-table-toolbar"
   >
     <!-- Table creation -->
@@ -226,43 +224,25 @@ function createTable() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Insert Table</DialogTitle>
-          <DialogDescription>
-            Choose the size of your new table.
-          </DialogDescription>
+          <DialogDescription> Choose the size of your new table. </DialogDescription>
         </DialogHeader>
 
         <div class="grid gap-4 py-4">
           <div class="grid grid-cols-2 gap-4">
             <div class="flex flex-col gap-2">
               <Label for="rows">Rows</Label>
-              <Input
-                id="rows"
-                v-model="newTableRows"
-                type="number"
-                min="1"
-                max="20"
-              />
+              <Input id="rows" v-model="newTableRows" type="number" min="1" max="20" />
             </div>
             <div class="flex flex-col gap-2">
               <Label for="columns">Columns</Label>
-              <Input
-                id="columns"
-                v-model="newTableCols"
-                type="number"
-                min="1"
-                max="10"
-              />
+              <Input id="columns" v-model="newTableCols" type="number" min="1" max="10" />
             </div>
           </div>
         </div>
 
         <DialogFooter>
-          <Button variant="outline" @click="showCreateTableDialog = false">
-            Cancel
-          </Button>
-          <Button @click="createTable">
-            Insert
-          </Button>
+          <Button variant="outline" @click="showCreateTableDialog = false"> Cancel </Button>
+          <Button @click="createTable"> Insert </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

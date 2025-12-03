@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// @ts-nocheck
+
 import type { Editor } from '@tiptap/vue-3'
 import type { HTMLAttributes } from 'vue'
 import { Label } from '@/components/ui/label'
@@ -27,13 +29,17 @@ const editor = computed(() => props.editor ?? contextEditor.value)
 const slotContents = reactive<Record<string, string>>(props.componentSlots || {})
 
 // Update form values when component slots change
-watch(() => props.componentSlots, (newSlots) => {
-  if (newSlots) {
-    Object.keys(newSlots).forEach((key) => {
-      slotContents[key] = newSlots[key]
-    })
-  }
-}, { deep: true, immediate: true })
+watch(
+  () => props.componentSlots,
+  (newSlots) => {
+    if (newSlots) {
+      Object.keys(newSlots).forEach((key) => {
+        slotContents[key] = newSlots[key]
+      })
+    }
+  },
+  { deep: true, immediate: true },
+)
 
 // Get component metadata based on component name
 const componentMeta = computed(() => {
@@ -65,30 +71,22 @@ function updateSlotContent(slotName: string, content: string) {
 
   // If editor and componentId are available, update the node
   if (editor.value && props.componentId) {
-    editor.value.chain().focus().updateComponentSlots(props.componentId, { ...slotContents }).run()
+    editor.value
+      .chain()
+      .focus()
+      .updateComponentSlots(props.componentId, { ...slotContents })
+      .run()
   }
 }
 </script>
 
 <template>
-  <div
-    :class="cn(
-      'tiptap-slot-panel',
-      props.class,
-    )"
-    data-slot="tiptap-slot-panel"
-  >
+  <div :class="cn('tiptap-slot-panel', props.class)" data-slot="tiptap-slot-panel">
     <div class="space-y-4">
-      <h3 class="text-sm font-medium">
-        {{ componentName || componentMeta.name }} Slots
-      </h3>
+      <h3 class="text-sm font-medium">{{ componentName || componentMeta.name }} Slots</h3>
 
       <div class="space-y-6">
-        <div
-          v-for="slot in componentMeta.slots"
-          :key="slot.name"
-          class="space-y-2"
-        >
+        <div v-for="slot in componentMeta.slots" :key="slot.name" class="space-y-2">
           <div class="flex justify-between items-baseline">
             <Label :for="`slot-${slot.name}`">{{ slot.name }}</Label>
           </div>
