@@ -68,6 +68,59 @@
     "github": {
       "label": "GitHub",
       "placeholder": "Enter your GitHub profile URL"
+    },
+
+    "nameProject": {
+      "label": "Project name",
+      "placeholder": "Enter project name"
+    },
+    "role": {
+      "label": "Role",
+      "placeholder": "Enter your role"
+    },
+
+    "projectDescription": {
+      "label": "Project Description",
+      "placeholder": "Enter your project description"
+    },
+
+    "educationName": {
+      "label": "Education name",
+      "placeholder": "Enter education name"
+    },
+    "degree": {
+      "label": "Degree",
+      "placeholder": "Enter your degree"
+    },
+    "gpa": {
+      "label": "GPA",
+      "placeholder": "Enter your GPA"
+    },
+    "startDate": {
+      "label": "Start date",
+      "placeholder": "Select start date"
+    },
+
+    "endDate": {
+      "label": "End date",
+      "placeholder": "Select end date"
+    },
+    "graduationDate": {
+      "label": "Graduation date",
+      "placeholder": "Select graduation date"
+    },
+
+    "nameCompany": {
+      "label": "Company Name",
+      "placeholder": "Enter company name"
+    },
+    "jobDescription": {
+      "label": "Job Description",
+      "placeholder": "Enter job description"
+    },
+    "jobRole": {
+      "label": "Job Role",
+      "placeholder": "Enter your job role"
     }
   },
 

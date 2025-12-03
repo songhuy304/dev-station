@@ -20,9 +20,10 @@ interface Props {
   required?: boolean
   labelIcon?: Component
   placeholder?: string
+  class?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {})
+withDefaults(defineProps<Props>(), {})
 
 const updateValue = ref<(value: string) => void>()
 
@@ -40,7 +41,7 @@ const editor = useEditor({
 
 <template>
   <VeeField v-slot="{ errors, value, handleChange }" :name="name" :validate-on-input="true">
-    <UiField :data-invalid="!!errors?.length">
+    <UiField :data-invalid="!!errors?.length" :class="class">
       <FieldLabel v-if="label" :for="name" class="flex items-center gap-1">
         <span v-if="labelIcon" aria-hidden="true">
           <component :is="labelIcon" class="size-4" />

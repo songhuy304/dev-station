@@ -88,76 +88,6 @@ const wordCount = computed(() => {
 
     <Separator orientation="vertical" class="h-6" />
 
-    <div class="flex items-center gap-1">
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger as-child>
-            <Button
-              size="icon"
-              type="button"
-              variant="ghost"
-              :class="{ 'bg-accent': isActive('heading', { level: 1 }) }"
-              :disabled="!isEditorReady"
-              @click="editor?.chain().focus().toggleHeading({ level: 1 }).run()"
-            >
-              <Icon name="mdi:format-header-1" class="h-5 w-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Heading 1</TooltipContent>
-        </Tooltip>
-
-        <Tooltip>
-          <TooltipTrigger as-child>
-            <Button
-              size="icon"
-              type="button"
-              variant="ghost"
-              :class="{ 'bg-accent': isActive('heading', { level: 2 }) }"
-              :disabled="!isEditorReady"
-              @click="editor?.chain().focus().toggleHeading({ level: 2 }).run()"
-            >
-              <Icon name="mdi:format-header-2" class="h-5 w-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Heading 2</TooltipContent>
-        </Tooltip>
-
-        <Tooltip>
-          <TooltipTrigger as-child>
-            <Button
-              size="icon"
-              type="button"
-              variant="ghost"
-              :class="{ 'bg-accent': isActive('heading', { level: 3 }) }"
-              :disabled="!isEditorReady"
-              @click="editor?.chain().focus().toggleHeading({ level: 3 }).run()"
-            >
-              <Icon name="mdi:format-header-3" class="h-5 w-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Heading 3</TooltipContent>
-        </Tooltip>
-
-        <Tooltip>
-          <TooltipTrigger as-child>
-            <Button
-              size="icon"
-              type="button"
-              variant="ghost"
-              :class="{ 'bg-accent': isActive('paragraph') }"
-              :disabled="!isEditorReady"
-              @click="editor?.chain().focus().setParagraph().run()"
-            >
-              <Icon name="mdi:format-paragraph" class="h-5 w-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Paragraph</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    </div>
-
-    <Separator orientation="vertical" class="h-6" />
-
     <!-- Lists -->
     <div class="flex items-center gap-1">
       <TooltipProvider>
@@ -194,8 +124,6 @@ const wordCount = computed(() => {
         </Tooltip>
       </TooltipProvider>
     </div>
-
-    <Separator orientation="vertical" class="h-6" />
 
     <!-- Word count -->
     <div class="ml-auto flex items-center text-xs text-muted-foreground">

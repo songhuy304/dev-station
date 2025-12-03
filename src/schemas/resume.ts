@@ -13,6 +13,22 @@ export const useResumeSchema = () => {
     graduationDate: z.string().optional(),
   })
 
+  const projectZodSchema = z.object({
+    nameProject: z.string().min(1, t('validationMessage.required')),
+    projectDescription: z.string().min(1, t('validationMessage.required')),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    role: z.string().optional(),
+  })
+
+  const experienceZodSchema = z.object({
+    nameCompany: z.string().min(1, t('validationMessage.required')),
+    jobDescription: z.string().min(1, t('validationMessage.required')),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    jobRole: z.string().optional(),
+  })
+
   const resumeBasicZodSchema = z.object({
     name: z.string().min(1, t('validationMessage.required')),
     email: z
@@ -25,8 +41,11 @@ export const useResumeSchema = () => {
     github: z.string().optional(),
     summary: z.string().optional(),
 
-    // education
-    educationZodSchema,
+    education: z.array(educationZodSchema).optional(),
+    projects: z.array(projectZodSchema).optional(),
+    experience: z.array(experienceZodSchema).optional(),
+
+    skill: z.string().optional(),
   })
 
   const resumeBasicSchema = toTypedSchema(resumeBasicZodSchema)

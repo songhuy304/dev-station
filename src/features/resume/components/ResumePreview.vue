@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { IResumePreview } from '@/shared/types'
 import { computed } from 'vue'
+import SectionResume from './SectionResume.vue'
+import { isEmpty, isHtmlEmpty } from '@/shared/utils'
 
 const props = defineProps<{
   resumeData: Partial<IResumePreview>
@@ -15,6 +17,11 @@ const infoList = computed(() => {
     props.resumeData.linkedin,
   ].filter(Boolean)
 })
+
+const formatDate = (startDate: string | undefined, graduationDate: string | undefined) => {
+  if (!graduationDate) return startDate
+  return `${startDate} - ${graduationDate}`
+}
 </script>
 
 <template>
@@ -44,6 +51,55 @@ const infoList = computed(() => {
               v-html="resumeData.summary"
             ></div>
           </div>
+
+          <SectionResume title="Education" v-if="!isEmpty(resumeData.education)" class="space-y-2">
+            <div v-for="(item, index) in resumeData.education" :key="index">
+              <div class="text-sm flex justify-between items-center font-medium">
+                <p>{{ item.educationName }}</p>
+                <p>{{ formatDate(item.startDate, item.graduationDate) }}</p>
+              </div>
+              <div class="text-sm font-normal flex justify-between items-center">
+                <p>{{ item.degree }}</p>
+                <p>{{ item.gpa }}</p>
+              </div>
+            </div>
+          </SectionResume>
+
+          <SectionResume
+            title="Experience"
+            v-if="!isEmpty(resumeData.experiences)"
+            class="space-y-2"
+          >
+            <div v-for="(item, index) in resumeData.experiences" :key="index">
+              <div class="text-sm flex justify-between items-center font-medium">
+                <p>{{ item.jobRole }}</p>
+                <p>{{ formatDate(item.startDate, item.endDate) }}</p>
+              </div>
+
+              <p class="text-sm">{{ item.nameCompany }}</p>
+
+              <div class="pl-5 text-sm">
+                <div v-html="item.jobDescription"></div>
+              </div>
+            </div>
+          </SectionResume>
+
+          <SectionResume title="Projects" v-if="!isEmpty(resumeData.projects)" class="space-y-2">
+            <div v-for="(item, index) in resumeData.projects" :key="index">
+              <div class="text-sm flex justify-between items-center font-medium">
+                <p>{{ item.nameProject }}</p>
+                <p>{{ formatDate(item.startDate, item.endDate) }}</p>
+              </div>
+
+              <div class="pl-5 text-sm">
+                <div v-html="item.projectDescription"></div>
+              </div>
+            </div>
+          </SectionResume>
+
+          <SectionResume title="Skills" v-if="!isHtmlEmpty(resumeData.skill)">
+            <div class="text-sm" v-html="resumeData.skill"></div>
+          </SectionResume>
         </div>
       </div>
 
