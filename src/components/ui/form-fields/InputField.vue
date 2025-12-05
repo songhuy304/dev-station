@@ -49,6 +49,7 @@ withDefaults(defineProps<Props>(), {
           :disabled="disabled"
           :aria-invalid="!!errors?.length"
           v-bind="field"
+          v-model="field.value"
         />
 
         <FieldDescription v-if="description">

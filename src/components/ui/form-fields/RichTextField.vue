@@ -22,21 +22,38 @@ interface Props {
   placeholder?: string
   class?: string
 }
-
 withDefaults(defineProps<Props>(), {})
 
-const updateValue = ref<(value: string) => void>()
+// Lưu hàm handleChange để dùng trong onUpdate
+const handleChangeRef = ref<((value: string) => void) | null>(null)
 
 const editor = useEditor({
   extensions: [StarterKit],
   content: '',
   onUpdate({ editor }) {
     const html = editor.getHTML()
-    if (updateValue.value) {
-      updateValue.value(html)
+    if (handleChangeRef.value) {
+      handleChangeRef.value(html)
     }
   },
 })
+
+const setEditorContent = (content: string) => {
+  if (editor.value && content) {
+    if (editor.value.getHTML() !== content) {
+      editor.value.commands.setContent(content, { emitUpdate: false })
+    }
+  }
+}
+
+const handleEditorMounted = (value: string, handleChange: (value: string) => void) => {
+  handleChangeRef.value = handleChange
+  if (value) {
+    setTimeout(() => {
+      setEditorContent(value)
+    }, 0)
+  }
+}
 </script>
 
 <template>
@@ -53,14 +70,7 @@ const editor = useEditor({
       <FieldContent>
         <TiptapProvider
           :editor="editor"
-          @vue:mounted="
-            () => {
-              updateValue = handleChange
-              if (editor && value) {
-                editor.commands.setContent(value, { emitUpdate: false })
-              }
-            }
-          "
+          @vue:mounted="() => handleEditorMounted(value, handleChange)"
         >
           <TiptapToolbar />
           <TiptapContent />

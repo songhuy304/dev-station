@@ -2,13 +2,23 @@
 import { Button, Heading, Text } from '@/components'
 import { PageContent, ResumePreview } from '@/features/resume'
 import { useResumeSchema } from '@/schemas'
+import { INIT_VALUES } from '@/shared/constants/init-value'
+import { exportResumeToPdf } from '@/shared/utils'
 import { Eye, FileUp } from 'lucide-vue-next'
 import { useForm } from 'vee-validate'
+import { ref } from 'vue'
 
 const { resumeBasicSchema } = useResumeSchema()
 const { values } = useForm({
   validationSchema: resumeBasicSchema,
+  initialValues: INIT_VALUES,
 })
+
+const previewRef = ref()
+
+const onPreview = () => {
+  exportResumeToPdf(previewRef.value?.$el)
+}
 </script>
 
 <template>
@@ -28,7 +38,7 @@ const { values } = useForm({
           Save changes
         </Button>
 
-        <Button variant="outline">
+        <Button variant="outline" @click="onPreview">
           <Eye className="mr-2 h-4 w-4" />
           Preview
         </Button>
@@ -37,17 +47,12 @@ const { values } = useForm({
           <FileUp />
           Parse from CV
         </Button>
-
-        <!-- <Button variant="outline">
-          <LucideLinkedin />
-          Parse from LinkedIn
-        </Button> -->
       </div>
     </div>
 
     <div class="flex gap-8">
       <PageContent />
-      <ResumePreview :resumeData="values" />
+      <ResumePreview :resumeData="values" ref="previewRef" />
     </div>
   </div>
 </template>

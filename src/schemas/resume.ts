@@ -7,15 +7,15 @@ export const useResumeSchema = () => {
 
   const educationZodSchema = z.object({
     educationName: z.string().min(1, t('validationMessage.required')),
-    degree: z.string().min(1, t('validationMessage.required')),
+    degree: z.string().optional(),
     gpa: z.string().optional(),
-    startDate: z.string().min(1, t('validationMessage.required')),
+    startDate: z.string().optional(),
     graduationDate: z.string().optional(),
   })
 
   const projectZodSchema = z.object({
     nameProject: z.string().min(1, t('validationMessage.required')),
-    projectDescription: z.string().min(1, t('validationMessage.required')),
+    projectDescription: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
     role: z.string().optional(),
@@ -23,7 +23,7 @@ export const useResumeSchema = () => {
 
   const experienceZodSchema = z.object({
     nameCompany: z.string().min(1, t('validationMessage.required')),
-    jobDescription: z.string().min(1, t('validationMessage.required')),
+    jobDescription: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
     jobRole: z.string().optional(),

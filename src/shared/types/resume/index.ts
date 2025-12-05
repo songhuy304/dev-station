@@ -15,7 +15,7 @@ export interface IResumePreview {
 
 export interface IResumeEducationPreview {
   educationName: string
-  degree: string
+  degree?: string
   gpa?: string
   startDate?: string
   graduationDate?: string
