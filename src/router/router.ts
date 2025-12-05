@@ -14,9 +14,15 @@ const router = createRouter({
       meta: { title: 'home' },
     },
     {
-      path: APP_PATH.RESUME,
+      path: APP_PATH.RESUME.base,
       component: Page.ResumePage,
       name: 'resume',
+      meta: { title: 'resume' },
+    },
+    {
+      path: APP_PATH.RESUME.detail(),
+      component: Page.ResumeDetailPage,
+      name: 'resume-detail',
       meta: { title: 'resume' },
     },
     {

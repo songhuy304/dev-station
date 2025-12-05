@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { IResumePreview } from '@/shared/types'
+import { isEmpty, isHtmlEmpty } from '@/shared/utils'
 import { computed, ref } from 'vue'
 import SectionResume from './SectionResume.vue'
-import { isEmpty, isHtmlEmpty } from '@/shared/utils'
-import ResumePreviewContainer from './ResumePreviewContainer.vue'
 
 const props = defineProps<{
   resumeData: Partial<IResumePreview>
@@ -33,8 +32,8 @@ const formatDate = (startDate: string | undefined, graduationDate: string | unde
 
 <template>
   <div class="align-middle">
-    <div ref="rootRef">
-      <ResumePreviewContainer>
+    <div class="bg-background h-[297mm] w-[210mm] overflow-hidden mx-auto shadow-2xl" ref="rootRef">
+      <div class="p-6 h-full" id="resume-preview">
         <div class="pb-2 py-4 relative">
           <div class="font-bold text-center text-3xl leading-normal">
             <span>{{ resumeData.name }}</span>
@@ -83,7 +82,7 @@ const formatDate = (startDate: string | undefined, graduationDate: string | unde
         <SectionResume title="Projects" v-if="!isEmpty(resumeData.projects)" class="space-y-2">
           <div v-for="(item, index) in resumeData.projects" :key="index">
             <div class="text-sm flex justify-between items-center font-medium">
-              <p>{{ item.nameProject }}</p>
+              <p class="font-semibold">{{ item.nameProject }}</p>
               <p>{{ formatDate(item.startDate, item.endDate) }}</p>
             </div>
 
@@ -96,7 +95,7 @@ const formatDate = (startDate: string | undefined, graduationDate: string | unde
         <SectionResume title="Skills" v-if="!isHtmlEmpty(resumeData.skill)">
           <div class="text-sm" v-html="resumeData.skill"></div>
         </SectionResume>
-      </ResumePreviewContainer>
+      </div>
     </div>
   </div>
 </template>

@@ -7,7 +7,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <FieldGroup>
+  <FieldGroup class="grid grid-cols-2 gap-4">
     <InputField
       name="name"
       :required="true"
@@ -52,6 +52,6 @@ const { t } = useI18n()
       :placeholder="t('fields.github.placeholder')"
     />
 
-    <RichTextField name="summary" label="Summary" />
+    <RichTextField name="summary" label="Summary" class="col-span-2" />
   </FieldGroup>
 </template>

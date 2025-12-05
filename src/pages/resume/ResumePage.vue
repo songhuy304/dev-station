@@ -1,58 +1,46 @@
 <script setup lang="ts">
-import { Button, Heading, Text } from '@/components'
-import { PageContent, ResumePreview } from '@/features/resume'
-import { useResumeSchema } from '@/schemas'
-import { INIT_VALUES } from '@/shared/constants/init-value'
-import { exportResumeToPdf } from '@/shared/utils'
-import { Eye, FileUp } from 'lucide-vue-next'
-import { useForm } from 'vee-validate'
-import { ref } from 'vue'
+import { Button, Card, CardContent, Heading, Text } from '@/components'
+import { APP_PATH, router } from '@/router'
+import { PlusCircle, Trash } from 'lucide-vue-next'
 
-const { resumeBasicSchema } = useResumeSchema()
-const { values } = useForm({
-  validationSchema: resumeBasicSchema,
-  initialValues: INIT_VALUES,
-})
-
-const previewRef = ref()
-
-const onPreview = () => {
-  exportResumeToPdf(previewRef.value?.$el)
+const onDetail = (_: number) => {
+  router.push({ path: APP_PATH.RESUME.detail() })
 }
 </script>
 
 <template>
-  <div class="space-y-3">
-    <div class="flex justify-between">
-      <div class="max-w-xl">
-        <Heading level="h3">Create Your Professional Resume</Heading>
-        <Text color="muted" variant="sm">
-          Build a standout resume in minutes. Fill in your details, customize the layout, and
-          download a polished CV that highlights your strengths.
-        </Text>
+  <div>
+    <Heading level="h3">My Resume</Heading>
+    <Text color="muted" variant="sm">Start Creating resume to your next job role</Text>
+
+    <div class="flex gap-8 mt-12">
+      <Card
+        class="max-w-64 w-full h-72 border border-dashed hover:scale-105 transition-all duration-300 cursor-pointer"
+      >
+        <CardContent class="flex justify-center items-center h-full">
+          <PlusCircle />
+        </CardContent>
+      </Card>
+
+      <div class="space-y-2 items-start">
+        <Card
+          @click="onDetail(23123)"
+          class="w-64 h-72 hover:scale-105 transition-all duration-300 cursor-pointer bg-blue-100"
+        >
+          <CardContent class="flex justify-center items-center h-full">
+            <img src="/images/resume-icon.png" alt="resume" class="object-cover" />
+          </CardContent>
+        </Card>
+
+        <div class="flex justify-between items-center px-1">
+          <div>
+            <Text weight="semibold" variant="sm">Frontend Developer</Text>
+            <Text color="muted" variant="xs">Last Update 2days ago</Text>
+          </div>
+
+          <Button variant="ghost"> <Trash class="text-destructive" /></Button>
+        </div>
       </div>
-
-      <div className="flex gap-2 flex-wrap">
-        <Button>
-          <Eye className="mr-2 h-4 w-4" />
-          Save changes
-        </Button>
-
-        <Button variant="outline" @click="onPreview">
-          <Eye className="mr-2 h-4 w-4" />
-          Preview
-        </Button>
-
-        <Button variant="outline">
-          <FileUp />
-          Parse from CV
-        </Button>
-      </div>
-    </div>
-
-    <div class="flex gap-8">
-      <PageContent />
-      <ResumePreview :resumeData="values" ref="previewRef" />
     </div>
   </div>
 </template>

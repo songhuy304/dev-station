@@ -18,13 +18,20 @@ export const quiz_path = () => {
   }
 }
 
+export const resume_path = () => {
+  const base = '/resume'
+  return {
+    base,
+    detail: () => `${base}/:id`,
+  }
+}
 const APP_PATH = {
   HOME: '/',
   COURSES: '/courses',
   QUIZZES: quiz_path(),
   INTERVIEWS: '/interviews',
   PROJECTS: '/projects',
-  RESUME: '/resume',
+  RESUME: resume_path(),
 }
 
 const SIDEBAR_ITEMS: ISideBar[] = [
@@ -34,7 +41,7 @@ const SIDEBAR_ITEMS: ISideBar[] = [
     title: 'home',
   },
   {
-    path: APP_PATH.RESUME,
+    path: APP_PATH.RESUME.base,
     icon: BookOpen,
     title: 'resume',
   },
